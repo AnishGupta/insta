@@ -1,0 +1,40 @@
+<%- include('basic/header.ejs')  %> 
+<main class="page projects-page">
+        <div class="container">
+            <div class="heading">
+                <center><h1>Write Post!!!!</h1></center>
+            </div>
+                <div class="container">
+                    <form action="/" method="POST" enctype="multipart/form-data">
+                        <div class="form-group"><label for="name">Author Name:</label><input class="form-control item" type="text" id="name" name="author"></div>
+                        <div class="form-group"><label for="subject">Title:</label><input class="form-control item" type="text" id="subject" name="title"></div>
+                        <div class="form-group"><label for="email">Description</label><input class="form-control item" type="text" id="email" name="description"></div>
+                        <label for="file"><input class="form-control item" type="file" id="image" name="image" /></label>
+                        <div class="form-group"><button class="btn btn-primary btn-block btn-lg" type="submit">Submit Form</button></div>
+                    </form>
+                </div>
+            <%if (locals.posts){ %>
+                <% if (posts.length > 0){ %>
+                    <div class="row">
+                    <% for (const post of posts){ %>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card border-0"><a href="#"><img class="card-img-top scale-on-hover" width="349.98" height="233.17" src="img/<%=post.img%>" alt="Card Image"></a>
+                                <div class="card-body">
+                                    <h5><%= post.title %></h5>
+                                    <h6><a href="#"><%= post.author %></a></h6>
+                                    <p class="text-muted card-text"><%= post.description %> </p>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                    </div>
+                <% }else{ %>
+                    No post data available
+                <% } %>
+            <% }else{ %>
+                Post Variable Not set Yet 
+            <% } %>
+        </div>
+    </section>
+</main>
+<%- include('basic/footer.ejs')  %> 

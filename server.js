@@ -1,8 +1,20 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
+const router = require('./routes/Blog');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
 
-app.get('/',(req,res) => {
-    res.send('<h1>Hello World from the server</h1>');
-})
+mongoose.connect("mongodb+srv://aman:aman@markone.wkg1d.mongodb.net/social?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true}, () => {
+    app.listen(process.env.PORT || 5000, () => {
+        console.log("The Server is running at 5000")
+    });
+});
+app.set('view engine','ejs');
+app.set('views','public/html');
 
-app.listen(process.env.PORT || 3000)
+app.use(express.urlencoded({extended:true}));
+app.use(morgan('dev'));
+app.use(express.static('public/static'));
+app.use('/img',express.static('img'));
+app.use(router);
