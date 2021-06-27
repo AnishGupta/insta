@@ -5,7 +5,7 @@ const router = require('./routes/Blog');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://aman:aman@markone.wkg1d.mongodb.net/social?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true}, () => {
+mongoose.connect("mongodb+srv://", {useNewUrlParser: true, useUnifiedTopology: true}, () => {
     app.listen(process.env.PORT || 5000, () => {
         console.log("The Server is running at 5000")
     });
